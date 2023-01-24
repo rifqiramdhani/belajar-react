@@ -9,8 +9,15 @@ const UserComponent = () => {
     const getData = async () => {
         const result = await apiUsers.getUser(localStorage.getItem('token').replace(/^["'](.+(?=["']$))["']$/, '$1'));
         
-        setData(result.data)
-        
+        console.log(result)
+
+        if (typeof result.response != 'undefined'){
+            if(result.response.status == 301){
+                alert("Token salah")
+            }
+        }else{
+            setData(result.data)
+        }
     }
 
     // console.log(localStorage.getItem('token'))

@@ -28,8 +28,10 @@ const ReqLogin = () => {
 
       // store token to local storage
       localStorage.setItem('token', JSON.stringify(result.data.token));
+      localStorage.setItem('login', true);
+      
       // redirect to home
-      nav('/home')
+      nav('/', {state : {auth : true}})
     }else{
       if (Array.isArray(result.response.data.message)){
 

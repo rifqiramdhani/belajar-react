@@ -1,24 +1,27 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom';
 import LoginComponent from '../Button/LoginComponent';
 import LogoutComponent from '../Button/LogoutComponent';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
 
-    const checkToken = (props) => {
-        const token = localStorage.getItem('token');
-        
-    }
+    // const { state } = useLocation();
+    // const { auth } = state;
+
+    const [Auth, setAuth] = useState(Boolean(localStorage.getItem('login')))
+    useEffect(() =>{
+        setAuth(Boolean(localStorage.getItem('login')))
+    })
 
     return (
         <div>
             <aside id="sidebar" className="sidebar">
                 <ul className="sidebar-nav" id="sidebar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" href="/">
+                        <Link to="/" className="nav-link">
                             <i className="bi bi-grid"></i>
                             <span>Dashboard</span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="nav-item">
@@ -45,9 +48,10 @@ const Sidebar = () => {
                         </Link>
                     </li>
 
+                    {Auth ? <LogoutComponent /> : <LoginComponent />}
+                    {/* {Auth ? <LoginComponent /> : <LogoutComponent />}  */}
 
-                    <LogoutComponent />
-
+                    <LogoutComponent/>
                 </ul>
             </aside>
         </div>

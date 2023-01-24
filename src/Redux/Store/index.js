@@ -5,7 +5,6 @@ import { combineReducers } from "redux";
 // daftar reducer
 const reducer = combineReducers({
     userReducers: userReducers,
-    
 })
 
 // config store

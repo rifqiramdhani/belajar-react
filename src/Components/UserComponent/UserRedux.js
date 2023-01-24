@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { deleteUsers, getAllUsers } from '../../Redux/Actions/reducerAction';
 
 const UserRedux = () => {
-    let navigate = useNavigate;
+    let navigate = useNavigate();
 
     let users = useSelector(state => state.userReducers.users);
     const dispatch = useDispatch();
@@ -14,10 +14,11 @@ const UserRedux = () => {
     })
 
     const editdata = (id) => {
-        navigate('/edit', { state: id})
+        navigate('/edituser', { state: {id} } )
     }
 
     const deletedata = (id) => {
+        // console.log(id)
         dispatch(deleteUsers(id))
     }
 
@@ -26,7 +27,7 @@ const UserRedux = () => {
             <Link to="/adduser" className="btn btn-primary btn-sm mb-2"> Tambah </Link>
             <table className='table table-striped table-hover' id="datatable">
                 <thead>
-                    <tr>
+                    <tr> 
                         <th>No</th>
                         <th>ID</th>
                         <th>Username</th>
@@ -43,8 +44,8 @@ const UserRedux = () => {
                                     <td>{ user.userId }</td>
                                     <td>{ user.username }</td>
                                     <td>
-                                        <button className="btn btn-primary btn-sm mr-1" onClick={() => editdata(user.id)}>Edit</button>
-                                        <button className="btn btn-danger btn-sm mr-1" onClick={() => deletedata(user.id)}>Delete</button>
+                                        <button className="btn btn-primary btn-sm mr-1" onClick={() => editdata(user.userId)}>Edit</button>
+                                        <button className="btn btn-danger btn-sm mr-1" onClick={() => deletedata(user.userId)}>Delete</button>
                                     </td>
                                 </tr>
                             )

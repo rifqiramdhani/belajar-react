@@ -30,6 +30,19 @@ export const getAllUsers = () => async (dispatch) => {
     }
 }
 
+export const getOneUsers = (id) => async (dispatch) => {
+    try {
+        const res = await ApiService.get(id);
+
+        dispatch({
+            type: ActionTypes.GET_USERS,
+            payload: res.data
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
 export const updateUsers = (id, data) => async (dispatch) => {
     try{
         const res = await ApiService.update(id, data);
@@ -46,11 +59,13 @@ export const updateUsers = (id, data) => async (dispatch) => {
 }
 
 export const deleteUsers = (id) => async (dispatch) => {
+    console.log(id)
     try {
         const res = await ApiService.remove(id);
+
         dispatch({
             type: ActionTypes.DELETE,
-            payload : {id}
+            payload : { id }
         })
 
         return Promise.resolve(res.data);

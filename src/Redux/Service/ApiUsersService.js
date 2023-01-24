@@ -9,15 +9,15 @@ const get = id => {
 }
 
 const create = data => {
-    console.log(data)
     return axios.post('/users/insert', data.user);
 }
 
 const update = (id, data) => {
-    return axios.put(`/users/${id}`, data);
+    return axios.put(`/users/update/${id}`, data);
 }
 const remove = id => {
-    return axios.delete(`/users/${id}`);
+    // console.log(id)
+    return axios.delete(`/users/delete/${id}`);
 }
 
 const ApiService = {

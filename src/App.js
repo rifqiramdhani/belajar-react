@@ -4,7 +4,6 @@ import Footer from './Components/Template/Footer';
 
 function App() {
 
-
   return (
     <div>
 
